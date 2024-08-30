@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Task Manager</title>
+</head>
+<body>
+  
+  <div class="flex flex-col justify-center items-center h-40 bg-zinc-800">
+    <p class="text-white text-4xl font-montserrat font-bold tracking-widest uppercase shadow-md">Apex :: Flow</p>
+    <p class="text-white text-2xl font-montserrat font-bold tracking-widest shadow-md mt-4">Flow to success with ApexFlow</p>
+  </div>
+  
+  <div class="main w-full min-h-screen bg-zinc-900 text-white">
+    <div class="form p-10 text-white">
+      <form action="/create" method="post">
+        <input class="block px-5 py-2 bg-zinc-800 w-full rounded-md outline-none" type="text" placeholder="Title goes here" name="title">
+        <textarea class="block mt-2 px-5 py-2 bg-zinc-800 resize-none w-full rounded-md outline-none" placeholder="Write your task details" name="details"></textarea>
+        <input class="mt-2 bg-blue-600 px-5 py-2 rounded-md" type="submit" value="Create Task">
+      </form>
+    </div>
+    <div class="tasks p-10 flex gap-3 flex-wrap">
+      <% if (files.length > 0) { %>
+        <% files.forEach(function(file) { %>
+          <div class="task min-w-72 px-3 py-4 rounded-md bg-zinc-800">
+            <h1 class="text-white text-2xl tracking-tighter"><%= file.replace('.txt', '') %></h1>
+            <div class="flex w-full justify-between items-center mt-3">
+              <a href="/file/<%= file %>" class="text-blue-500 inline-block ">Read More</a>
+              <a class="text-zinc-600" href="/edit/<%= file %>">Edit</a>
+            </div>
+          
+          </div>
+        <% }); %>
+      <% } else { %>
+        <h3 class="text-zinc-500">No tasks yet</h3>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
